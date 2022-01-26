@@ -1,0 +1,79 @@
+
+.btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 7px 10px 7px 10px;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn-primary {
+    background-color: $primary;
+    border-radius: 3px;
+    margin-top: 10px;
+
+    // the & here would do the same as declaring the focus for this
+    // class outside ('.btn-primary' on a normal css file).
+    // the scss library also allow us to lighten colors by 
+    // placing the desired color along with an amount parameter 
+    // in a lighten function
+    &:disabled {
+        background-color: lighten($color: $primary, $amount: 15);
+    }
+
+    
+    &:hover {
+        background-color: darken($color: $primary, $amount: 15 );
+    }
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.google-btn {
+    cursor: pointer;
+    margin-top: 5px;
+    width: 100%;
+    height: 42px;
+    background-color: $google-blue;
+    border-radius: 2px;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+
+    transition: box-shadow .3s ease;
+
+    .google-icon-wrapper {
+        position: absolute;
+        margin-top: 1px;
+        margin-left: 1px;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background-color: $white;
+    }
+    .google-icon {
+        position: absolute;
+        margin-top: 11px;
+        margin-left: 11px;
+        width: 18px;
+        height: 18px;
+    }
+    .btn-text {
+        float: right;
+        margin: 11px 40px 0 0;
+        color: $white;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+    }
+    &:hover {
+        box-shadow: 0 0 6px $google-blue;
+    }
+    &:active {
+        background: $button-active-blue;
+    }
+}

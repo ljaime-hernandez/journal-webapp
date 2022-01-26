@@ -1,0 +1,65 @@
+
+.auth__main {
+    display: flex;
+    background-color: $primary;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    height: 100vh; // view height
+    width: 100vw; // view width
+}
+
+.auth__box-container {
+    background-color: white;
+    box-shadow: 5px 5px $dark-grey;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+}
+
+.auth__title {
+    // the scss library allow us to darken colors by 
+    // placing the desired color along with an amount parameter 
+    // in a darken function
+    color: darken($color: $primary, $amount: 20);
+    margin-bottom: 20px;
+}
+
+.auth__input {
+    color: $dark-grey;
+    border: 0px;
+    border-bottom: 1px solid $light-grey;
+    font-size: 15px;
+    height: 20px;
+    width: 100%;
+    padding-bottom: 10px;
+
+    transition: border-bottom .3s ease;
+
+    // the & here would do the same as declaring the focus for this
+    // class outside ('.auth__input:focus' on a normal css file)
+    &:focus {
+        border-bottom: 1px solid $primary;
+        outline: none;
+    }
+}
+
+.auth__social-networks {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.auth__alert-error {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 5px;
+}
