@@ -1,5 +1,5 @@
 
-// used for the custom reducer, the string will help us have a brief description of what the action does
+// used for all custom reducers, the string will help us have a brief description of what the action does
 // in the redux extension debugger
 export const types = {
     login: '[auth] Login',
@@ -9,5 +9,13 @@ export const types = {
     uiRemoveError: '[UI] remove error',
 
     uiStartLoading: '[UI] start login',
-    uiFinishLoading: '[UI] finish loading'
+    uiFinishLoading: '[UI] finish loading',
+
+    notesAddNew: '[NOTES] new note',
+    notesActive: '[NOTES] set active note',
+    notesLoad: '[NOTES] Load notes',
+    notesUpdate: '[NOTES] update note',
+    notesFileUrl: '[NOTES] update image url',
+    notesDelete: '[NOTES] delete note',
+    notesLogoutClean: '[NOTES] logout notes cleaning'
 }

@@ -1,31 +1,52 @@
 import React from 'react';
+import moment from 'moment';
+import { activeNote } from '../../actions/notes';
+import { useDispatch } from 'react-redux';
 
-export const JournalEntry = () => {
+export const JournalEntry = ({id, ...note}) => {
+
+    const dispatch = useDispatch();
+    // variable taking the date information which will allow us to 
+    // render the information of the date accordingly.
+    const {date, title, url, body} = note;
+    const noteDate = moment(date);
+
+    const handleEntryClick = () => {
+        dispatch(activeNote(id, {...note}))
+    }
+
   return (
-    <div className="journal__entry pointer">
-        <div 
-            className="journal__entry-picture"
-            style={{
-                backgroundSize: 'cover',
-                backgroundImage: 'url(https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png)'
-            }}
-        >
-        </div>
+    <div 
+        className="journal__entry pointer"
+        onClick={handleEntryClick}        
+    >
+        {
+            // if the user updated an image, this block of elements
+            // will be rendered on our journal entries, if not, the
+            // image block will be empty
+            (url)
+                &&   <div 
+                    className="journal__entry-picture"
+                    style={{
+                        backgroundSize: 'cover',
+                        backgroundImage: `url(${url})`
+                    }}
+                    >
+                    </div>      
+        }
     
         <div className="journal__entry-body">
             <p className="journal__entry-title">
-                New Day
+                {title}
             </p>
             <p className="journal__entry-content">
-                ASDFASDFSDASFGSAdffgsaSDFGHDSWDF
-                ASDFASDFASDFASDFASDFASDFSADFSADFASDFAS
-                DFASDFASDFASDFASDFASDFASDFASDFSDFAS
+                {body}
             </p>
         </div>
 
         <div className="journal__entry-date-box">
-            <span>Monday</span>
-            <span>28</span>
+            <span>{noteDate.format('dddd')}</span>
+            <span>{noteDate.format('Do')}</span>
         </div>
     </div>
   )
