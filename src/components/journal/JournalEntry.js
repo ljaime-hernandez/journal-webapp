@@ -6,11 +6,18 @@ import { useDispatch } from 'react-redux';
 export const JournalEntry = ({id, ...note}) => {
 
     const dispatch = useDispatch();
-    // variable taking the date information which will allow us to 
-    // render the information of the date accordingly.
     const {date, title, url, body} = note;
+
+    // variable taking the date information by using the moment
+    // library which will allow us to render the information of the 
+    // date accordingly.
     const noteDate = moment(date);
 
+    // clicking on an individual entry will launch a dispatch to the
+    // notesReducer which will add the note into an active state,
+    // launching the NoteScreen component which will render the note
+    // information into it for us to be able to either read its content
+    // properly or to modify it.
     const handleEntryClick = () => {
         dispatch(activeNote(id, {...note}))
     }
@@ -45,6 +52,7 @@ export const JournalEntry = ({id, ...note}) => {
         </div>
 
         <div className="journal__entry-date-box">
+            <span>{noteDate.format('MMMM')}</span>
             <span>{noteDate.format('dddd')}</span>
             <span>{noteDate.format('Do')}</span>
         </div>

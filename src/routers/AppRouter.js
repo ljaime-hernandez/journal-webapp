@@ -4,7 +4,7 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { useDispatch } from 'react-redux';
 import { JournalScreen } from '../components/journal/JournalScreen';
 import { AuthRouter } from './AuthRouter';
@@ -31,7 +31,7 @@ export const AppRouter = () => {
     // the function will be launched every time the user access to the webapp.
     // we will either render private pages if the user information is persisted
     // in the webpage and the user exists in our database, or remain on public
-    // pages if the user is not authenticated or not existant on the database.
+    // pages if the user is not authenticated or not existent on the database.
     useEffect(() => {
       
     firebase.auth().onAuthStateChanged(async(user) => {

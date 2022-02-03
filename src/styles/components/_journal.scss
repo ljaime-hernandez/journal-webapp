@@ -57,6 +57,7 @@
     display: flex;
     margin-bottom: 10px;
     overflow: hidden;
+    justify-content: space-between;
 }
 
 .journal__entry-picture {
@@ -65,26 +66,29 @@
 }
 
 .journal__entry-body {
-    padding: 10px;
+    padding: 5px;
+    flex: auto;
 }
 
 .journal__entry-title {
-    font-size: 14px;
+    font-size: 17px;
     font-weight: bold;
 }
 
 .journal__entry-content {
-    font-size: 10px;
+    font-size: 14px;
+    flex-direction: column;
+    justify-content: left;
 }
 
 .journal__entry-date-box {
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: end;
     padding: 5px;
 
     span{
-        font-size: 17px;
+        font-size: 10px;
     }
 }

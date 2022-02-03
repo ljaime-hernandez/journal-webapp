@@ -18,6 +18,16 @@
     }
 }
 
+.btn-danger {
+    background-color: $button-active-red;
+
+    transition: background-color .3s ease;
+
+    &:hover {
+        background-color: darken($color: $button-active-red, $amount: 15);
+    }
+}
+
 .btn-primary {
     background-color: $primary;
     border-radius: 3px;

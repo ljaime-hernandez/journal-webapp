@@ -18,12 +18,21 @@ export const startNewNote = () => {
         // asynchronous function pushing a new note into the users journal
         const doc = await db.collection(`${uid}/journal/notes`).add(newNote);
         dispatch(activeNote(doc.id, newNote));
+        dispatch(addNewNote(doc.id, newNote));
     }
 }
 
 // sets the note into an active state, used in the NoteScreen component
 export const activeNote = (id, note) => ({
     type: types.notesActive,
+    payload: {
+        id, 
+        ...note
+    }
+})
+
+export const addNewNote = (id, note) => ({
+    type: types.notesAddNew,
     payload: {
         id, 
         ...note
@@ -61,7 +70,7 @@ export const startSaveNote = (note) => {
         await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
 
         dispatch(refreshNote(note.id, noteToFirestore));
-        Swal.fire('Saved', note.title, 'Success');
+        Swal.fire('Saved', note.title, 'success');
     } 
 }
 
@@ -86,10 +95,10 @@ export const fileUploading = (file) => {
             title: 'Uploading... please wait',
             text: 'Please wait...',
             allowOutsideClick: false,
-            onBeforeOpen: () => {
+            willOpen: () => {
                 Swal.showLoading();
             }
-        })
+        });
         const fileUrl = await fileUpload(file);
         activeNote.url = fileUrl;
         dispatch(startSaveNote(activeNote))
@@ -98,3 +107,25 @@ export const fileUploading = (file) => {
     }
 }
 
+export const startDelete = (id) => {
+    return async(dispatch, getState) => {
+
+        const uid =  getState().auth.uid;
+
+        await db.doc(`${uid}/journal/notes/${id}`).delete();
+
+        dispatch(deleteNote(id));
+    }
+}
+
+export const deleteNote = (id) => ({
+    type: types.notesDelete,
+    payload: id
+})
+
+export const noteLogout = () => {
+    
+    return {
+        type: types.notesLogoutClean
+    }
+}
