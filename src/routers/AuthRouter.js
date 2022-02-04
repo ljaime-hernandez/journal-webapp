@@ -9,6 +9,7 @@ export const AuthRouter = () => {
         // this way we can modulate the classes being used on this section accordingly,
         // none of the classes used in this section will affect the '/' or the main
         // component, as that route is one level upper to this route
+        
         <div className='auth__main'>
             <div className='auth__box-container'>
                 <Switch>

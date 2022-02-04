@@ -1,7 +1,9 @@
 
 .btn {
-    background-color: transparent;
+    background-color: lighten($color: $primary, $amount: 5);
+    border-radius: 5px;
     border: none;
+    margin-top: 7px;
     color: white;
     cursor: pointer;
     font-size: 12px;
@@ -14,12 +16,14 @@
     }
 
     &:hover {
-        color: darken($color: white, $amount: 20);
+        color: darken($color: white, $amount: 10);
+        background-color: darken($color: $primary, $amount: 10);
     }
 }
 
 .btn-danger {
     background-color: $button-active-red;
+    font-size: large;
 
     transition: background-color .3s ease;
 
@@ -91,5 +95,27 @@
     }
     &:active {
         background: $button-active-blue;
+    }
+}
+
+.btn-primary-notes {
+    
+    background-color: darken($color: $primary, $amount: 15);
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-left: 5px;
+
+    // the & here would do the same as declaring the focus for this
+    // class outside ('.btn-primary' on a normal css file).
+    // the scss library also allow us to lighten colors by 
+    // placing the desired color along with an amount parameter 
+    // in a lighten function
+    &:disabled {
+        background-color: lighten($color: $primary, $amount: 15);
+    }
+
+    
+    &:hover {
+        background-color: darken($color: $primary, $amount: 30 );
     }
 }
