@@ -40,6 +40,16 @@
     }
 }
 
+.journal__new-entry-p{
+    align-items: center;
+    cursor: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
 .journal__entries {
     flex: 1 1 auto;
     margin-top: 30px;

@@ -10,6 +10,8 @@ export const JournalEntries = () => {
     // new entry button for the user to create it.
     const {notes} = useSelector( state => state.notes );
 
+    notes.sort((a,b) => b.date - a.date);
+
   return (
     <div className="journal__entries animate__animated animate__fadeInLeft">
 

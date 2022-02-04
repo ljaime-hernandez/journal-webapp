@@ -29,8 +29,8 @@ export const SideBar = () => {
         
         <div className="journal__sidebar-navbar">
             <h3 className="mt-5">
-                <i className="far fa-moon"/>
-                <span>{name}</span>
+                <i class="fas fa-portrait">  </i>
+                <span>  {name}</span>
             </h3>
 
             <button
@@ -45,11 +45,14 @@ export const SideBar = () => {
             className="journal__new-entry"    
             onClick={handleAddNew}
         >
-            <i className="far fa-calendar-plus fa-5x"></i>
+            <i className="far fa-calendar-alt fa-4x"></i>
             <p className="mt-5"></p>
             <p>New Entry</p>
             
+            
         </div>
+
+        <p className="journal__new-entry-p">(scroll down to see all entries)</p>
 
         <JournalEntries/>
     </aside>

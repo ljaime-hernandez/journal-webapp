@@ -55,6 +55,7 @@ export const JournalEntry = ({id, ...note}) => {
             <span>{noteDate.format('MMMM')}</span>
             <span>{noteDate.format('dddd')}</span>
             <span>{noteDate.format('Do')}</span>
+            <span>{noteDate.format('h:mm a')}</span>
         </div>
     </div>
   )
