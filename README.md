@@ -1,3 +1,4 @@
 # Journal Webapp
 
-WIP
+Webapp link: https://journal-webapp.netlify.app/
+
