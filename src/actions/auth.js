@@ -18,7 +18,7 @@ export const startLoginEmailPassword = (email, password) => {
         // account authentication from regular email accounts, it returns a callback which we will
         // use to dispatch the login action from our auth reducer and, either it goes thru or not
         // will also dispatch the finishLoading function to enable the LoginScreen button for login
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        return firebase.auth().signInWithEmailAndPassword(email, password)
         .then(({user}) => {
             dispatch(finishLoading());
             dispatch(login(user.uid, user.displayName));
