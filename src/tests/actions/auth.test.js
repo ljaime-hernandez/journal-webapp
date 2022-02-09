@@ -66,8 +66,5 @@ describe('tests on auth actions', () => {
                 displayName: null
             }
         });
-
-
     });
-    
 });
