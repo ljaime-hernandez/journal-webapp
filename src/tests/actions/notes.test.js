@@ -9,12 +9,31 @@ import { db } from '../../firebase/firebaseConfig';
 import { fileUpload } from '../../helpers/fileUpload';
 import { types } from '../../types/types';
 
+/* to run this test:
+1. run the 'npm install' command from the journal-webapp folder 
+2. run the 'npm install --save-dev enzyme' command (if you have not done so)
+3. run the 'npm install --save-dev enzyme-to-json' command (if you have not done so)
+4. run the 'npm install --save-dev @wojtekmaj/enzyme-adapter-react-17 --legacy-peer-deps' command (if you are using React 17 as i do)
+5. run the 'npm install --save-dev @testing-library/react-hooks' command (if you have not done so)
+6. run the 'npm install redux-mock-store --save-dev' command (if you have not done so)
+7. make sure the setupTests.js file include the enzyme, enzyme-to-json and the react adapter libraries
+8. run the command 'npm run test'
+9. to have a clearer view of this single js test file, press p. then type the file name 'notes.test.js'
+*/
+
+// we need to make the fileUpload a mock as the logic behind it is tested in the helpers folder and
+// it requires specific file parsing parameters
 jest.mock('../../helpers/fileUpload', () => ({
     fileUpload: jest.fn()
 }))
 
+// the test requires a mockStore as the auth file requires dispatch actions onto our store,
+// the mockstore should have a middleware which can be used for testing purposes
+// as well 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
+// the mockstore should have an authorized user by default for this tests as the 
+// actions tested belong to the private routes
 let store = mockStore({
     auth: {
         uid: "Test id",
@@ -24,6 +43,8 @@ let store = mockStore({
 
 describe('tests on notes actions', () => {
 
+    // the user and active note by defaut in this mock are set by default
+    // before each function
     beforeEach(() => {
         store = mockStore({
             auth: {
@@ -47,6 +68,8 @@ describe('tests on notes actions', () => {
         const actions = store.getActions();
         const {uid} = store.getState().auth;
 
+        // once the startNewNote functions is used, the database creates it on the 
+        // users collection and the note becomes active as well on the notes reducer
         expect(actions[0]).toEqual({
             type: types.notesActive,
             payload: {
@@ -57,6 +80,8 @@ describe('tests on notes actions', () => {
             }
         });
 
+        // the second action dispatched shows the form on the webpage which will
+        // allow us to save the information on the users collection
         expect(actions[1]).toEqual({
             type: types.notesAddNew,
             payload: {
@@ -67,6 +92,9 @@ describe('tests on notes actions', () => {
             }
         });
 
+        // on this last 2 lines i retrieve the id of the note just created and
+        // make a request to the firebase database for it to be deleted as soon as the
+        // function is done, so we dont create redundant information
         const docId = actions[1].payload.id;
         await db.doc(`${uid}/journal/notes/${docId}`).delete();
     });

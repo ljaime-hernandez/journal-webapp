@@ -1,6 +1,20 @@
 import cloudinary from 'cloudinary';
 import { fileUpload } from '../../helpers/fileUpload';
 
+
+/* to run this test:
+1. run the 'npm install' command from the journal-webapp folder 
+2. run the 'npm install --save-dev enzyme' command (if you have not done so)
+3. run the 'npm install --save-dev enzyme-to-json' command (if you have not done so)
+4. run the 'npm install --save-dev @wojtekmaj/enzyme-adapter-react-17 --legacy-peer-deps' command (if you are using React 17 as i do)
+5. run the 'npm install --save-dev @testing-library/react-hooks' command (if you have not done so)
+6. run the 'npm install cloudinary --save-dev' command
+7. make sure the setupTests.js file include the enzyme, enzyme-to-json AND the commented lines should be used
+8. run the command 'npm run test'
+9. to have a clearer view of this single js test file, press p. then type the file name 'cloudinary.test.js'
+*/
+
+
 cloudinary.config({ 
     cloud_name: 'dkns40h4i', 
     api_key: '635578586767627', 

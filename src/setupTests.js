@@ -7,5 +7,6 @@ Enzyme.configure({ adapter: new Adapter() });
 expect.addSnapshotSerializer(createSerializer({mode: 'deep'}));
 
 // uncomment this lines for tests in any cloudinary file
+
 // window.setImmediate = window.setTimeout;
 // window.clearImmediate = window.clearTimeout;
