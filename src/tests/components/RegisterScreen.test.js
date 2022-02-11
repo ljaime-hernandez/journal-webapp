@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import thunk from "redux-thunk";
 import configureStore from 'redux-mock-store';
 import { RegisterScreen } from "../../components/auth/RegisterScreen";
+import { types } from '../../types/types';
 
 /* to run this test:
 1. run the 'npm install' command from the journal-webapp folder 
@@ -40,10 +41,10 @@ describe('tests on RegisterScreen component', () => {
         </Provider>
         );
 
-    beforeEach(()=> {
-        store = mockStore(initialState);
-        jest.clearAllMocks();
-    });
+    // beforeEach(()=> {
+    //     store = mockStore(initialState);
+    //     jest.clearAllMocks();
+    // });
 
     test('should render properly', () => {
         
@@ -53,22 +54,50 @@ describe('tests on RegisterScreen component', () => {
     test('should dispatch actions accordingly', () => {
       
         const emailField = wrapper.find('input[name="email"]');
-
+        
+        // default value in the email input is set on the Register screen
+        // i use the change event to set it ut as an empty string
         emailField.simulate('change', {
             target: {
                 value: '',
                 name: 'email'
             }
         });
-
+        // the submit event should trigger a message error as the email input is
+        // empty.
         wrapper.find('form').simulate('submit', {
             preventDefault(){}
         });
 
         const actions = store.getActions();
-        console.log(actions);
-
+        
+        expect(actions[0]).toEqual({
+            type: types.uiSetError,
+            payload: "The email input is incorrect"
+        })
     });
-    
-    
+
+    test('should render alert div with error message', () => {
+      
+        const initState = {
+            auth: {},
+            ui: {
+                loading: false,
+                msgError: 'Error message test'
+            }
+        };
+
+        let store = mockStore(initState);
+
+        const wrapper = mount(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <RegisterScreen/>
+                </MemoryRouter>
+            </Provider>
+        );
+
+        expect(wrapper.find('.auth__alert-error').exists()).toBe(true);
+        expect(wrapper.find('.auth__alert-error').text().trim()).toBe(initState.ui.msgError);
+    });
 })

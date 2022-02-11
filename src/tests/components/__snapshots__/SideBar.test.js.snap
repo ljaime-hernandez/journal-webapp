@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests on SideBar component should render properly 1`] = `
+<aside
+  className="journal__sidebar"
+>
+  <div
+    className="journal__sidebar-navbar"
+  >
+    <h3
+      className="mt-5"
+    >
+      <i
+        className="fas fa-portrait"
+      >
+          
+      </i>
+      <span>
+          
+      </span>
+    </h3>
+    <button
+      className="btn"
+      onClick={[Function]}
+    >
+      Logout
+    </button>
+  </div>
+  <div
+    className="journal__new-entry"
+    onClick={[Function]}
+  >
+    <i
+      className="far fa-calendar-alt fa-4x"
+    />
+    <p
+      className="mt-5"
+    />
+    <p>
+      New Entry
+    </p>
+  </div>
+  <p
+    className="journal__new-entry-p"
+  >
+    (scroll down to see all entries)
+  </p>
+  <div
+    className="journal__entries animate__animated animate__fadeInLeft"
+  />
+</aside>
+`;

@@ -29,7 +29,7 @@ export const SideBar = () => {
         
         <div className="journal__sidebar-navbar">
             <h3 className="mt-5">
-                <i class="fas fa-portrait">  </i>
+                <i className="fas fa-portrait">  </i>
                 <span>  {name}</span>
             </h3>
 
