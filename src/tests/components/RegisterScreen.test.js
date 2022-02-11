@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom';
+import thunk from "redux-thunk";
+import configureStore from 'redux-mock-store';
 import { mount } from "enzyme";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import thunk from "redux-thunk";
-import configureStore from 'redux-mock-store';
-import { RegisterScreen } from "../../components/auth/RegisterScreen";
 import { types } from '../../types/types';
+import { RegisterScreen } from "../../components/auth/RegisterScreen";
 
 /* to run this test:
 1. run the 'npm install' command from the journal-webapp folder 
@@ -21,6 +21,8 @@ import { types } from '../../types/types';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
+// for this test to work, the auth object should not contain any authenticated user information as it is a public
+// component and will not render the page accordingly
 const initialState = {
     auth: {},
     ui: {
@@ -40,11 +42,6 @@ describe('tests on RegisterScreen component', () => {
             </MemoryRouter>
         </Provider>
         );
-
-    // beforeEach(()=> {
-    //     store = mockStore(initialState);
-    //     jest.clearAllMocks();
-    // });
 
     test('should render properly', () => {
         
@@ -71,6 +68,10 @@ describe('tests on RegisterScreen component', () => {
 
         const actions = store.getActions();
         
+        // the default error message for whenever the email input is empty on the registration
+        // section should be displayed as, by default, the other inputs contain default information
+        // and this test erases the email information, the payload in this expect should match
+        // the correct error
         expect(actions[0]).toEqual({
             type: types.uiSetError,
             payload: "The email input is incorrect"
@@ -97,6 +98,8 @@ describe('tests on RegisterScreen component', () => {
             </Provider>
         );
 
+        // confirms theres an error element with the proper class rendered on the screen
+        // along with the respective message error displayed on it
         expect(wrapper.find('.auth__alert-error').exists()).toBe(true);
         expect(wrapper.find('.auth__alert-error').text().trim()).toBe(initState.ui.msgError);
     });

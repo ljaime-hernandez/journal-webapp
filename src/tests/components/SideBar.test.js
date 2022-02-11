@@ -16,6 +16,9 @@ jest.mock('../../actions/notes', () => ({
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
+// for the SideBar component to work, we should include correct user authentication info,
+// as it is a private component and, if the information is incorrect, it would not render
+// properly
 const initialState = {
     auth: {
         uid:"HTXx027Mr1U94zHwXIsXNpT0M843",
@@ -51,6 +54,7 @@ describe('tests on SideBar component', () => {
             </MemoryRouter>
         </Provider>
         );
+
     test('should render properly', () => {
       
         expect(wrapper).toMatchSnapshot();

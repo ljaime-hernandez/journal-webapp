@@ -13,8 +13,6 @@ import { types } from '../../types/types';
 9. to have a clearer view of this single js test file, press p. then type the file name 'authReducer.test.js'
 */
 
-
-
 describe('tests on authReducer', () => {
 
     test('should return default', () => {

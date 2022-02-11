@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
+import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import { mount } from "enzyme";
-import thunk from 'redux-thunk';
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { LoginScreen } from '../../components/auth/LoginScreen';
@@ -24,9 +24,10 @@ jest.mock('../../actions/auth', () => ({
     startLoginEmailPassword: jest.fn()
 }))
 
-
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
+// for this test to work, the auth object should not contain any authenticated user information as it is a public
+// component and will not render the page accordingly
 const initialState = {
     auth: {},
     ui: {
@@ -59,17 +60,21 @@ describe('tests on LoginScreen component', () => {
 
     test('should launch startGoogleLogin', () => {
       
+        // the google authentication is not tested, but just its function called is
+        // verified, further login tests can be found in the notes action test file
         wrapper.find('.google-btn').prop('onClick')();
-
         expect(startGoogleLogin).toHaveBeenCalled();
     });
     
     test('should launch startLoginEmailPassword', () => {
         
+        // every submit test should include the preventDefault method, otherwise they would
+        // not work properly
         wrapper.find('form').prop('onSubmit')({
             preventDefault(){}
         });
-
+        // the form contain default values on this component, therefore we just need to
+        // emulate the submission for it to test its arguments
         expect(startLoginEmailPassword).toHaveBeenCalledWith('email@email.com', '123456');
     });
     
