@@ -10,6 +10,7 @@ export const JournalEntries = () => {
     // new entry button for the user to create it.
     const {notes} = useSelector( state => state.notes );
 
+    // arrange the notes by date
     notes.sort((a,b) => b.date - a.date);
 
   return (

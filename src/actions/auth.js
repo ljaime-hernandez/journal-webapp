@@ -4,7 +4,6 @@ import { types } from "../types/types";
 import Swal from 'sweetalert2';
 import { noteLogout } from './notes';
 
-// 
 export const startLoginEmailPassword = (email, password) => {
 
     // the dispatch contains functions from different reducers, but the useDispatch hook
@@ -64,6 +63,9 @@ export const logout = () => {
     }
 }
 
+// the logout action will sign the user out from the firebase account,
+// will delete the notes array used on the store and will set the user
+// auth reducer onto an empty initial state
 export const startLogout = () => {
     return (dispatch) => {
         firebase.auth().signOut();
@@ -72,6 +74,13 @@ export const startLogout = () => {
     }
 }
     
+// this action will use the firebase auth method creating a user using its
+// input email and password, as the function is sending the respective information 
+// on a http request we set the promise resolved from that function as asynchronous,
+// which will return the user created information, additional to it we use the returned
+// information to request an additional information post including the user name.
+// finally we use the dispatch to login the user based on its uid and the
+// displayName recently updated
 export const startRegisterWithEmailPasswordName = (email, password, name) => {
     return (dispatch) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)

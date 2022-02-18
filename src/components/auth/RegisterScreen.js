@@ -9,8 +9,15 @@ import { useForm } from '../../hooks/useForm';
 export const RegisterScreen = () => {
 
   const dispatch = useDispatch();
+  // same as in the LoginScreen component, we are retrieving the ui object from the
+  // store, the ui has an error message value which is set to null by default,
+  // it will have a string value if one of the input boxes is submitted with incorrect
+  // information.
   const {msgError} = useSelector( state => state.ui );
 
+  // same as in the loginScreen component, information for the register form is set
+  // by default for simplicity purposes, but it should send an error element on the screen
+  // as the user is already registered
   const [values, handleInputChange] = useForm({
     name: 'Miguel',
     email: 'email@email.com',
