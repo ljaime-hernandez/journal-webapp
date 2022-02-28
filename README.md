@@ -18,10 +18,11 @@ Webapp designed to practice several uses on React such as:
 * unit testing (more information on the test section and each test file in the source folder)
 
 More information about the webapp functionality can be found in each file and this readme file which has 
-been extensively documented for educational purposes. thanks for taking your time to review my code or 
-notes and leave either a comment or a star if you found it useful.
+been extensively documented for educational purposes. Thanks for taking your time to review my code or 
+notes and leave either a comment or a star if you find it useful.
 
-Folders explained by alphabetical order
+**Folders are explained by alphabetical order below**
+**dependencies on this project are enlisted at the bottom of the readme file**
 
 ## actions 
 
@@ -34,7 +35,7 @@ Every function has proper dispatch callings for the reducers to send the proper 
 that way we can keep a track on every single action done on the webpage.
 
 ### notes:
-Contains all the functions related to the notes/active-note logic. all the CRUD functions connect to 
+Contains all the functions related to the notes/active-note logic. All the CRUD functions connect to 
 our firebase DB collection and uses the authReducer to retrieve the user uid to make the proper requests 
 on the database. The dispatch method uses functions which will lead towards the notesReducer updating 
 every step on the store. The sweetalert2 popups will display uploading messages and will be removed only 
@@ -43,7 +44,7 @@ after the information has been properly saved and the promise is returned.
 ### ui:
 Consist plainly on functions which will return a state, as the properties of our uiReducer are booleans
 then those will be manipulated in each component where used, those are mainly used as flags for elements
-to be displayed or not into the screen, alonfg with proper error messages when needed, such a wrong input 
+to be displayed or not into the screen, along with proper error messages when needed, such a wrong input 
 for email, password and so on.
 
 ## components:
@@ -52,7 +53,7 @@ for email, password and so on.
 Contain both the LoginScreen and the RegisterScreen components which share similar logic, they both are
 forms which will dispatch the appropriate login/register methods in our firebase collection for authentication
 and registration, both has additional functions which will validate each user input and will display
-error messages based on the input box where the information was incorrect. both forms has default
+error messages based on the input box where the information was incorrect. Both forms has default
 information for testing purposes.
 
 ### journal:
@@ -82,7 +83,7 @@ google authentication with firebase.
 ## helpers:
 
 ### fileUpload:
-Asynchronous function used with a cloudinary API which will require a personal key and a predefine 
+Asynchronous function used with a Cloudinary API which will require a personal key and a predefine 
 upload preset where the files are going to be stored, the post request used on this function should return
 a promise which will contain a random url which we will use on an active note to update its url property.
 
@@ -113,14 +114,14 @@ authenticated user information, it will lead it to the private route containing 
 Contains the routes to both the login and register components.
 
 ### PrivateRoute:
-the PrivateRoute is going to receive several pieces of data which we will use as filter
+The PrivateRoute is going to receive several pieces of data which we will use as filter
 to either render or not certain pages in our webapp, the isAuthenticated comes from the
 AppRouter which is a boolean used for confirming if the user is logged into his account
 or not, the component will be the private component the user will have access to when 
 he is authenticated.
 
 ### PublicRoute:
-the PrivateRoute is going to receive several pieces of data which we will use as filter
+The PrivateRoute is going to receive several pieces of data which we will use as filter
 to either render or not certain pages in our webapp, the isAuthenticated comes from the
 AppRouter which is a boolean used for confirming if the user is logged into his account
 or not, the component will be the private component the user will have access to when 
@@ -226,6 +227,7 @@ in each test file, please refer to each file for additional information.
 
 
 
+
 ### dependencies:
 
 - react
@@ -237,11 +239,11 @@ in each test file, please refer to each file for additional information.
 - moment (for proper date formatting)
 - Sweetalert2 (for alert and confirm popups)
 - validator (to validate email)
-- cloudinary (file database)
+- Cloudinary (file database)
 - enzyme
 - enzyme-to-json
 - jest
 - react-hooks (for hooks tests)
-- redux-mock-store (for firestore tests)
+- redux-mock-store (for Firestore tests)
 - bootstrap (CDN)
 - animate (CDN)
