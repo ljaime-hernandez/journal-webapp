@@ -21,7 +21,7 @@ More information about the webapp functionality can be found in each file and th
 been extensively documented for educational purposes. Thanks for taking your time to review my code or 
 notes and leave either a comment or a star if you find it useful.
 
-**Folders are explained by alphabetical order below**
+**Folders are explained by alphabetical order below** <br>
 **dependencies on this project are enlisted at the bottom of the readme file**
 
 ## actions 
